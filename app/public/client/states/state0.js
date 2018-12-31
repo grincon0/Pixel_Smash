@@ -1,19 +1,15 @@
 // State 0 start menu
 let demo = window.demo || (window.demo = {});
 //let socket = io();
-
 let mainBGM;
 let enter;
-
-
-
 
 // Creating background image
 function startMenu() {
     startMenu = game.add.image(0, 0, 'menu-background');
     startMenu.width = 1000;
     startMenu.height = 700;
-};
+}
 
 // Creating particles for background
 function particleEmitter() {
@@ -95,7 +91,7 @@ function multiPlayer() {
     button2.onInputOut.add(out, this);
     button2.onInputUp.add(goOnline, this)
 
-};
+}
 
 function rankings() {
     let rankings = game.add.text(370,620, 'RANKINGS');
@@ -145,7 +141,6 @@ demo.state0.prototype = {
 
 
 function up() {
-    
     console.log('button up', arguments);
     game.sound.stopAll();
 }
@@ -161,10 +156,15 @@ function out() {
 function playGame(){
     game.sound.stopAll();
     enter.play();
-    game.state.start('state1');
+    //game.state.start('state1');
+    //socket.emit('gaming');
 }
 
-function goOnline(){
+function goOnline() {
     game.sound.stopAll();
-    game.state.start('online');
+    game.state.start('onlineChars');
 }
+
+/*socket.on('clicked-menu', function () {
+    game.state.start('state1');
+});*/

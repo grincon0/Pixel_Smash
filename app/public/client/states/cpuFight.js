@@ -3,8 +3,6 @@ demo = window.demo || (window.demo = {});
 //mghosty for ghost
 
 // scott for scott
-
-
 player = new Character('mghosty', 10, 1000, 1900);
 
 
