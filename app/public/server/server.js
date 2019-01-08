@@ -101,28 +101,47 @@ io.on('connect', function(socket) {
         }
     });
 
-    //Listen for player
+    // Send over your player to opponent
     socket.on('my-player', (data) => {
         console.log(data, 'LINE 66 app.js');
-        myPlayer = data.fighter;
-        socket.broadcast.to(myRoom).emit('opponent-picked', myPlayer);
-        // Ready after two players
-        if ((myPlayer !== '') && (myOpponent !== '')) {
-            console.log("Opponent is Here line 131");
-            socket.broadcast.to(myRoom).emit('start-game', { myplayer: myPlayer, opponent: myOpponent });
-        }
+        if(myPlayer === '' ){
+            myPlayer = data.fighter;
+            // If we have both players
+            if(data.opponent !== '') {
+                myOpponent = data.opponent;
+                console.log("OPPONENT WAS POPULATED. myOpponent: ", myOpponent, "myPlayer: ", myPlayer);
+                let greenlight = checkArena(myPlayer, myOpponent);
+                if (greenlight) io.sockets.in(myRoom).emit('greenlight', { id: socket.id, fighter: myPlayer, opponent: myOpponent });
+            }
+            else {
+                socket.broadcast.to(myRoom).emit('opponent-picked', { opponent: myPlayer, id: data.id, room: myRoom } );
+                console.log("OPPONENT WAS NOT POPULATED", myOpponent);
+            }
+        } 
     });
 
-    // Save opponent
-    socket.on('opponent', (opponent) => {
-        console.log(opponent, ' IS OPPONENT AFTER SELECTION');
-        myOpponent = opponent;
+    // Send recursive data for greenlight socket event
+    socket.on('ready', (data) => {
+        console.log(data, ' IS READY DATA');
         // Ready after two players
-        if ((myPlayer !== '') && (myOpponent !== '')) {
-            console.log("Opponent is Here line 131");
-            socket.broadcast.to(myRoom).emit('start-game', { myplayer: myPlayer, opponent: myOpponent });
-        }
+        console.log(socket.id, " = SENDER");
+        io.sockets.in(data.room).emit('greenlight', { id: data.id, fighter: data.myplayer, opponent: data.myopponent });
     });
+
+
+     // Get opponent data
+     socket.on('send-updates', (act) => {
+        socket.broadcast.to(myRoom).emit('get-updates', act);
+     });
+
+     // Greenlight
+     const checkArena = (player, rival) => {
+        console.log("IM AT ARENA WITH ", player, rival);
+        if ((player !== '') && (rival !== '')) {
+            console.log("CHECKARENA SENDER: ", socket.id);
+            return true;
+        }
+    }
 });
 
 //Matchmaking
