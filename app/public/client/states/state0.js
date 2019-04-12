@@ -57,7 +57,7 @@ function pixelSmash() {
 };
 
 function startGame() {
-    let start = game.add.text(350,380, 'START GAME');
+    let start = game.add.text(350,380, 'SINGLE PLAYER');
     var button1;
     // creating on click button for text
     button1 = game.add.button(350, 380, 'button1', null, this, 2, 1, 0);
@@ -75,12 +75,12 @@ function startGame() {
 };
 
 function multiPlayer() {
-    let multiPlayer = game.add.text(400,500, 'ONLINE');
+    let multiPlayer = game.add.text(275,500, 'ONLINE - COMING SOON');
     var button2;
     multiPlayer.font= 'PipeDream';
     multiPlayer.fontWeight = 'bold';
     multiPlayer.fontSize = 40;
-    multiPlayer.fill = '#ffffff';
+    multiPlayer.fill = '#7a7a7a';
 
     // creating on click button for text
     button2 = game.add.button(400,500, 'button2', null, this, 2, 1, 0);
@@ -94,13 +94,13 @@ function multiPlayer() {
 }
 
 function rankings() {
-    let rankings = game.add.text(370,620, 'RANKINGS');
+    let rankings = game.add.text(370,620, 'SOUND TEST');
     var button3;
     // Creating on click button for text
     rankings.font= 'PipeDream';
     rankings.fontWeight = 'bold';
     rankings.fontSize = 40;
-    rankings.fill = '#ffffff';
+    rankings.fill = '#7a7a7a';
 
     button3 = game.add.button(370,620, 'button3', null, this, 2, 1, 0);
     button3.alpha = 0;
@@ -108,7 +108,7 @@ function rankings() {
     button3.height = 40;
     button3.onInputOver.add(over, this);
     button3.onInputOut.add(out, this);
-    button3.onInputUp.add(up, this)
+    button3.onInputUp.add(up, this);
 };
 
 demo.state0 = function () {};
@@ -156,7 +156,7 @@ function out() {
 function playGame(){
     game.sound.stopAll();
     enter.play();
-    //game.state.start('state1');
+    game.state.start('state1');
     //socket.emit('gaming');
 }
 

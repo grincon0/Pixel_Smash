@@ -10,7 +10,7 @@ function Main() {}
 
 Main.prototype = {
     preload: function () {
-        game.load.script('state0', './state0.js');
+        game.load.script('state0', './state0.js'); 
         game.load.script('state1', './state1.js');
         game.load.script('game', './game.js');
         game.load.script('onlineChars', './onlineSelect.js');
@@ -30,9 +30,9 @@ Main.prototype = {
 
 game.state.add('state0', demo.state0);
 game.state.add('online', demo.online);
-game.state.add('game', demo.game);
-game.state.add('onlineChars', demo.onlineChars);
+ game.state.add('game', demo.game);
+game.state.add('onlineChars', demo.onlineChars); 
 game.state.add('state1', demo.state1);
-game.state.add('cpuFight', demo.cpuFight);
-game.state.add('training', demo.training);
+game.state.add('cpuFight', demo.cpuFight); 
+game.state.add('training', demo.training); 
 game.state.start('state0');

@@ -117,7 +117,10 @@ function chooseGhost() {
     fighter = 'mghosty';
     game.sound.stopAll();
     goodluck.play();
+    console.log('start game');
     game.state.start('cpuFight');
+
+  
 }
 
 //Ghost has been selected;

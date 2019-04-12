@@ -1,3 +1,6 @@
+
+
+
 demo = window.demo || (window.demo = {});
 
 //mghosty for ghost
@@ -2302,7 +2305,7 @@ demo.cpuFight.prototype = {
         game.load.audio('elecHit', '../assets/sfx/Hurt.wav');
         game.load.audio('explosion', '../assets/sfx/expl.wav');
         game.load.audio('battle1', '../assets/music/Ambush.mp3');
-        game.load.audio('battle2', '../assets/music/Friendly Competition.ogg');
+        game.load.audio('battle2', '../assets/music/test.mp3');
     },
     create: function () {
         // Starting game physics
