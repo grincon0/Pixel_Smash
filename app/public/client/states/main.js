@@ -17,6 +17,7 @@ Main.prototype = {
         game.load.script('online', './online.js');
         game.load.script('cpuFight', './cpuFight.js');
         game.load.script('training', './training.js');
+        game.load.script('soundTest', './soundTest.js');
     },
     create: function () {
         game.state.add('state0', state0);
@@ -25,6 +26,7 @@ Main.prototype = {
         game.state.add('online', online);
         game.state.add('cpuFight', cpuFight);
         game.state.add('training', cpuFight);
+        game.start.add('soundTest', soundTest);
     }
 };
 
@@ -35,4 +37,5 @@ game.state.add('onlineChars', demo.onlineChars);
 game.state.add('state1', demo.state1);
 game.state.add('cpuFight', demo.cpuFight); 
 game.state.add('training', demo.training); 
+game.state.add('soundTest', demo.soundTest);
 game.state.start('state0');

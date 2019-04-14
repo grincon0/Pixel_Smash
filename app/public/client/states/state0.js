@@ -100,7 +100,7 @@ function rankings() {
     rankings.font= 'PipeDream';
     rankings.fontWeight = 'bold';
     rankings.fontSize = 40;
-    rankings.fill = '#7a7a7a';
+    rankings.fill = '#ffffff';
 
     button3 = game.add.button(370,620, 'button3', null, this, 2, 1, 0);
     button3.alpha = 0;
@@ -108,7 +108,7 @@ function rankings() {
     button3.height = 40;
     button3.onInputOver.add(over, this);
     button3.onInputOut.add(out, this);
-    button3.onInputUp.add(up, this);
+    button3.onInputUp.add(goSoundTest, this);
 };
 
 demo.state0 = function () {};
@@ -163,6 +163,11 @@ function playGame(){
 function goOnline() {
     game.sound.stopAll();
     game.state.start('onlineChars');
+}
+
+function goSoundTest(){
+    game.sound.stopAll();
+    game.state.start('soundTest')
 }
 
 /*socket.on('clicked-menu', function () {
