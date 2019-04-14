@@ -1,4 +1,4 @@
-/* demo = window.demo || (window.demo = {});
+demo = window.demo || (window.demo = {});
 
 
 let mainTheme,
@@ -7,105 +7,132 @@ let mainTheme,
     battle3,
     battle4,
     onlineLobby,
-    selectFighter;
+    selectFighter,
+    soundPlayer,
+    tracks;
 
 
-demo.online = function () { };
-demo.online.prototype = {
+tracks = [
+    {
+        name: 'mainTheme',
+        number: 1,
+    },
+    {
+        name: 'battle1',
+        number: 2
+    },
+    {
+        name: 'battle2',
+        number: 3,
+    },
+    {
+        name: 'battle3',
+        number: 4
+    },
+    {
+        name: 'battle4',
+        number: 5
+    },
+    {
+        name: 'onlineLobby',
+        number: 6
+    },
+    {
+        name: 'selectFighter',
+        number: 7
+    }
+];
+
+class soundPlayer {
+    constructor() {
+        this.songName = '',
+            this.trackNumber = 0
+    }
+    get songName() {
+        return this.songName;
+    }
+    get trackNumber() {
+        return this.trackNumber;
+    }
+    decrementTrack = () => {
+        if (this.trackNumber > 0) {
+            this.trackNumber = this.trackNumber--;
+        }
+    }
+    incrementTrack = () => {
+        if(this.trackNumber < 6 ){
+            this.trackNumber = this.trackNumber++;
+        }else{
+            this.trackNumber = 0;
+        }
+    }
+    setSong = (name, number) => {
+        if (typeof name === 'string') {
+            this.songName = name;
+            this.trackNumber = number;
+        } else {
+            console.log('Error, song name propType needs to be string')
+        }
+
+    }
+}
+
+
+
+const soundTest = new soundPlayer();
+
+const currentTrackNumber = soundTest.trackNumber;
+
+
+
+
+
+demo.soundTest = function () { };
+demo.soundTest.prototype = {
     preload: function () {
         game.load.image('sky', '../assets/art/onlineBG3.png');
-        game.load.spritesheet('rain1', '../assets/art/redb1.png', 15, 15);
-        game.load.spritesheet('rain2', '../assets/art/redg1.png', 15, 15);
-        game.load.spritesheet('rain3', '../assets/art/redp1.png', 15, 15);
-        game.load.spritesheet('rain4', '../assets/art/redpk1.png', 15, 15);
+
+        /* Load audio for sound test */
+
+        mainTheme = game.load.audio('mainTheme', '../assets/music/ThemeOfPixelSmash.ogg')
+        battle1 = game.load.audio('battle1', '../assets/music/Ambush.mp3')
+        battle2 = game.load.audio('battle2', '../assets/music/Dive into Battle.ogg')
+        battle3 = game.load.audio('battle3', '../assets/music/Friendly Competition.ogg')
+        battle4 = game.load.audio('battle4', '../assets/music/test.mp3')
+        onlineLobby = game.load.audio('onlineLobby', '../assets/music/Intermission.ogg')
+        selectFighter = game.load.audio('selectFighter', '../assets/music/Ready.ogg');
     },
     create: function () {
 
-        bgm = game.add.audio('bgm');
-
-       
-        
-        bgm.play();
-
-        bgm.loopFull();
-
-        
-        bg = game.add.image(0, 0, 'sky');
-
-        bg.width = 1000;
-        bg.height = 800;
-
-        var emitter = game.add.emitter(game.world.centerX, 0, 400);
-
-        emitter.width = game.world.width;
-
-        emitter.makeParticles('rain1');
-
-        emitter.minParticleScale = 0.1;
-        emitter.maxParticleScale = 0.5;
-
-        emitter.setYSpeed(300, 500);
-        emitter.setXSpeed(-5, 5);
-
-        emitter.minRotation = 0;
-        emitter.maxRotation = 0;
-
-        emitter.start(false, 1600, 5, 0);
-
-        var emitter2 = game.add.emitter(game.world.centerX, 0, 400);
-
-        emitter2.width = game.world.width;
-
-        emitter2.makeParticles('rain2');
-
-        emitter2.minParticleScale = 0.1;
-        emitter2.maxParticleScale = 0.5;
-
-        emitter2.setYSpeed(300, 500);
-        emitter2.setXSpeed(-5, 5);
-
-        emitter2.minRotation = 0;
-        emitter2.maxRotation = 0;
-
-        emitter2.start(false, 1600, 5, 0);
-
-        var emitter3= game.add.emitter(game.world.centerX, 0, 400);
-
-        emitter3.width = game.world.width;
-
-        emitter3.makeParticles('rain3');
-
-        emitter3.minParticleScale = 0.1;
-        emitter3.maxParticleScale = 0.5;
-
-        emitter3.setYSpeed(300, 500);
-        emitter3.setXSpeed(-5, 5);
-
-        emitter3.minRotation = 0;
-        emitter3.maxRotation = 0;
-
-        emitter3.start(false, 1600, 5, 0);
-        
-
-        var emitter4= game.add.emitter(game.world.centerX, 0, 400);
-
-        emitter4.width = game.world.width;
-
-        emitter4.makeParticles('rain4');
-
-        emitter4.minParticleScale = 0.1;
-        emitter4.maxParticleScale = 0.5;
-
-        emitter4.setYSpeed(300, 500);
-        emitter4.setXSpeed(-5, 5);
-
-        emitter4.minRotation = 0;
-        emitter4.maxRotation = 0;
-
-        emitter4.start(false, 1600, 5, 0);
+        makeButton('<', 600, 600);
+        makeButton(currentTrackNumber, 650, 600);
+        makeButton('>', 700, 600);
     },
     update: function () {
 
     }
 
-} */
+}
+
+
+function makeButton(name, x, y) {
+
+    var button = game.add.button(x, y, 'button', click, this, 0, 1, 2);
+    button.name = name;
+    button.scale.set(2, 1.5);
+    button.smoothed = false;
+
+    var text = game.add.bitmapText(x, y + 7, 'nokia', name, 16);
+    text.x += (button.width / 2) - (text.textWidth / 2);
+
+}
+
+function click(button) {
+
+    soundTest.setSong(tracks[currentTrackNumber].name, tracks[currentTrackNumber].number);
+    [soundTest.songName].play();
+    currentTrackNumber++;
+    /* button.play(); */
+
+
+}
