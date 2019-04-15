@@ -8,7 +8,9 @@ let mainTheme,
     battle4,
     onlineLobby,
     selectFighter,
-    tracks;
+    tracks,
+    cachedTrack,
+    slotCreated = false;
 
 
 
@@ -16,29 +18,25 @@ let mainTheme,
 class soundPlayer {
     constructor() {
         this.songName = '',
-            this.trackNumber = 0
+        this.trackNumber = 0
     }
 
     decrementTrack = () => {
-        if (this.trackNumber > 0) {
-            this.trackNumber = this.trackNumber--;
+        if (this.trackNumber !== 0) {
+            this.trackNumber = this.trackNumber -= 1;
         }
     }
     incrementTrack = () => {
         if (this.trackNumber < 6) {
             this.trackNumber = this.trackNumber += 1;
-            console.log(this.trackNumber);
+          
         } else {
             this.trackNumber = 0;
         }
     }
     setSong = (name) => {
-        if (typeof name === 'string') {
-            this.songName = name;
 
-        } else {
-            console.log('Error, song name propType needs to be string')
-        }
+            this.songName = name;
 
     }
 }
@@ -81,9 +79,11 @@ demo.soundTest.prototype = {
         onlineLobby = game.add.audio('onlineLobby');
         selectFighter = game.add.audio('selectFighter');
 
-        makeButton('<', 100, 600);
+        soundText();
 
-        makeButton('>', 490, 600);
+        makeButton('<', 120, 600);
+
+        makeButton('>', 510, 600);
 
         tracks = [
             {
@@ -121,6 +121,8 @@ demo.soundTest.prototype = {
 
         ];
 
+        cachedTrack = currentTrackNumber;
+        makeButton(`BGM: 0${currentTrackNumber}`, 310, 600);
         soundTester.setSong(tracks[currentTrackNumber].name);
         tracks[currentTrackNumber].name.play();
 
@@ -128,7 +130,16 @@ demo.soundTest.prototype = {
 
     },
     update: function () {
-        makeButton(`BGM: 0${currentTrackNumber}`, 290, 600);
+
+        if(cachedTrack !== currentTrackNumber){
+            makeButton(`BGM: 0${currentTrackNumber}`, 310, 600);
+        }
+
+      
+
+           
+        
+        
     }
 
 };
@@ -137,12 +148,12 @@ demo.soundTest.prototype = {
 function makeButton(name, x, y) {
 
 
-    var button = game.add.button(x, y, 'button', click, this, 0, 1, 2);
+    const button = game.add.button(x, y, 'button', click, this, 0, 1, 2);
     button.name = name;
     button.scale.set(2, 1.5);
     button.smoothed = false;
 
-    var text = game.add.bitmapText(x, y + 7, 'nokia', name, 25);
+    const text = game.add.bitmapText(x, y + 7, 'nokia', name, 40);
     text.x += (button.width / 2) - (text.textWidth / 2);
 
 }
@@ -150,11 +161,8 @@ function makeButton(name, x, y) {
 function click(button) {
     if (button.name === '<') {
 
-       
-        tracks[currentTrackNumber].name.destroy();
-        
-
-        
+        tracks[currentTrackNumber].name.stop();
+    
         soundTester.decrementTrack();
         currentTrackNumber = soundTester.trackNumber;
         soundTester.setSong(`${tracks[currentTrackNumber].name}`);
@@ -165,7 +173,7 @@ function click(button) {
 
     if (button.name === '>') {
       
-        tracks[currentTrackNumber].name.destroy();
+        tracks[currentTrackNumber].name.stop();
         
 
         soundTester.incrementTrack();
@@ -175,4 +183,12 @@ function click(button) {
     }
 
 
+}
+
+function soundText(){
+    let text = game.add.text(260,100, 'SOUND TEST');
+    text.font= 'PipeDream';
+    text.fontWeight = 'bold';
+    text.fontSize = 75;
+    text.fill = '#ffffff';
 }

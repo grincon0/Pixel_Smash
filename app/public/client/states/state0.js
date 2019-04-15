@@ -141,16 +141,16 @@ demo.state0.prototype = {
 
 
 function up() {
-    console.log('button up', arguments);
+   
     game.sound.stopAll();
 }
 
 function over() {
-    console.log('button over');
+  
 }
 
 function out() {
-    console.log('button out');
+    
 }
 
 function playGame(){
