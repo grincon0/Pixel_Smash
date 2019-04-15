@@ -167,6 +167,7 @@ function goOnline() {
 
 function goSoundTest(){
     game.sound.stopAll();
+    enter.play();
     game.state.start('soundTest')
 }
 
