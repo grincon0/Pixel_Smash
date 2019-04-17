@@ -2239,7 +2239,7 @@ demo.cpuFight.prototype = {
         game.load.spritesheet('battlestage1', '../assets/art/base-stage1.png', 321, 126);
         game.load.spritesheet('barrier', '../assets/art/barrier.png', 108, 94, 6);
         game.load.spritesheet('elecHit', '../assets/art/hit.png', 50, 28, 3);
-        game.load.spritesheet('pred', '../assets/art/particlered.png', 4, 4);
+        game.load.spritesheet('pred', '../assets/art/particleCyan.png', 4, 4);
         game.load.spritesheet('back', '../assets/art/background1.png', 500, 700, 34);
         game.load.spritesheet('bonusPtcl', '../assets/art/particleStar.png', 30, 30);
 
