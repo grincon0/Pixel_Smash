@@ -1,6 +1,10 @@
 Project Title
 # Pixel-Smash
 
+**Demo Link**
+
+https://pixelsmash-demo.herokuapp.com/
+
 **Team Members**
 
 **David Baker, Kelvin Mundi, George Rincon**
