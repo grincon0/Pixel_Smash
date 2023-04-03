@@ -1,16 +1,14 @@
 
-
-
 demo = window.demo || (window.demo = {});
+let selectedFighter = window.selectedChar;
+console.log('window.selectedChar', window.selectedChar);
 
 //mghosty for ghost
 
 // scott for scott
 player = new Character('mghosty', 10, 1000, 1900);
 
-
 comp = new Ai('scott', 10, 1300, 1500);
-
 
 let attempts = 0;
 let hits = 0;
