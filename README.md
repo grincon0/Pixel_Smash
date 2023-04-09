@@ -25,7 +25,7 @@ A fun, yet competitive HTML5 multiplayer platformer game that lets players battl
 
 4. Game will now be playable via `localhost:3000`.
 
-NOTE: Only Single player and Sound Test modes are accessible locally.
+NOTE: Only the `Single player` and `Sound Test` modes are accessible locally.
 
 **Rough Breakdown of Tasks**
 
