@@ -15,6 +15,18 @@ A fun, yet competitive HTML5 multiplayer platformer game that lets players battl
 * Gulp
 * MySQL
 
+**Try it out!**
+
+1. Download/clone repository.
+
+2. Run `npm i`.
+
+3. Once installation is complete, run `npm run start`.
+
+4. Game will now be playable via `localhost:3000`.
+
+NOTE: Only the `Single player` and `Sound Test` modes are accessible locally.
+
 **Rough Breakdown of Tasks**
 
 ⦁   Create the  different states that the game needs for functionality.
