@@ -15,7 +15,7 @@ A fun, yet competitive HTML5 multiplayer platformer game that lets players battl
 * Gulp
 * MySQL
 
-**Local Demo**
+**Try it out!**
 
 1. Download/clone repository.
 
