@@ -27,6 +27,8 @@ A fun, yet competitive HTML5 multiplayer platformer game that lets players battl
 
 NOTE: Only the `Single player` and `Sound Test` modes are accessible locally.
 
+OR play the light version: https://grincon0.github.io/pixel_smash_2018_lite/
+
 **Rough Breakdown of Tasks**
 
 ⦁   Create the  different states that the game needs for functionality.
